@@ -1,0 +1,24 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: ting-rabbit
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: root
+    virtual-host: /
+    listener:
+      simple:
+        # 确认
+        acknowledge-mode: manual
+        # rabbitmq重试
+        retry:
+          enabled: true
+          max-attempts: 3
+    # 消息确认
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    template:
+      mandatory: true
